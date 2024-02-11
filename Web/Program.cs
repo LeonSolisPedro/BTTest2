@@ -1,7 +1,12 @@
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var mvcBuilder = builder.Services.AddControllersWithViews();
+
+var dllFile = new FileInfo(@"coolbro/Web.dll");
+var assembly = Assembly.LoadFile(dllFile.FullName);
+var mvcBuilder = builder.Services.AddControllersWithViews().AddApplicationPart(assembly);
 if (builder.Environment.IsDevelopment())
 {
     mvcBuilder.AddRazorRuntimeCompilation();
