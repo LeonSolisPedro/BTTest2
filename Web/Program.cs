@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var dllFile = new FileInfo(@"coolbro/Web.dll");
 var assembly = Assembly.LoadFile(dllFile.FullName);
-var mvcBuilder = builder.Services.AddControllersWithViews().AddApplicationPart(assembly);
+var mvcBuilder = builder.Services.AddHttpClient().AddControllersWithViews().AddApplicationPart(assembly);
 if (builder.Environment.IsDevelopment())
 {
     mvcBuilder.AddRazorRuntimeCompilation();
